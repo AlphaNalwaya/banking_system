@@ -1,10 +1,11 @@
 class Transaction < ApplicationRecord
   belongs_to :account
+  belongs_to :debit_card
   
-  validates :amount, :debit_card_id, presence: true
+  validates :amount, presence: true
   after_save :withdrawal_amount_and_check_balance
-  after_save :update_balance_after_deposit
-  after_save :left_balance_after_withdrawal
+  after_save :update_balance
+  after_save :left_balance
 
   private
 
@@ -14,14 +15,14 @@ class Transaction < ApplicationRecord
     end
   end
 
-  def update_balance_after_deposite
+  def update_balance
     if self.operation == 'deposite'
       new_balance = self.account.balance + self.amount
       self.account.update.attributes(balance: new_balance)
     end
   end
 
-  def left_balance_after_withdrawal
+  def left_balance
     if self.operation == 'withdrawal'    
       new_balance = self.account.balance - self.amount
       unless self.account.update_attributes(balance: new_balance)

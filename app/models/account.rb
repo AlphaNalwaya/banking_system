@@ -12,14 +12,14 @@ class Account < ApplicationRecord
   private
 
   def balance_limit
-	if self.balance < 100
-    	errors.add(:balance, "balance must be grater then 100")
-	end	
+    if self.balance < 100
+      errors.add(:balance, "balance must be grater then 100")
+    end	
   end
 
   def check_balance_have_non_zero
     if self.balance <= 0
-        errors.add(:balance, "can not open account")
-  	end
+      errors.add(:balance, "can not open account")
+    end
   end
 end

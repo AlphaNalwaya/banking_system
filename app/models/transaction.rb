@@ -3,6 +3,7 @@ class Transaction < ApplicationRecord
   belongs_to :debit_card
   
   validates :amount, presence: true
+  validates :operation, inclusion: { in: %w(deposite withdrawal)}
   after_save :withdrawal_amount_and_check_balance
   after_save :update_balance
   after_save :left_balance

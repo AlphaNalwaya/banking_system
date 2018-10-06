@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  card_no: 1
+  expiry_date: 2018-10-04
+  issue_date: 2018-10-04
+  pin_no: 1
+
+two:
+  card_no: 1
+  expiry_date: 2018-10-04
+  issue_date: 2018-10-04
+  pin_no: 1

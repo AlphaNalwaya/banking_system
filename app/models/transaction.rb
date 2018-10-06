@@ -25,7 +25,7 @@ class Transaction < ApplicationRecord
   def left_balance
     if self.operation == 'withdrawal'    
       new_balance = self.account.balance - self.amount
-      unless self.account.update_attributes(balance: new_balance)
+      unless self.account.update.attributes(balance: new_balance)
       raise "amount can not be withdraw"
     end
   end

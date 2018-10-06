@@ -7,18 +7,18 @@ class Account < ApplicationRecord
   validates :account_no, :balance, :bank_id, presence: true
   validate :balance_limit
 
-  before_update :check_balance_have_non_zero,on: [:update]
+  before_update :check_balance,on: [:update]
 
   private
 
   def balance_limit
     if self.balance < 100
-      errors.add(:balance, "balance must be grater then 100")
+      errors.add(:balance, "should be at least 100")
     end	
   end
 
-  def check_balance_have_non_zero
-    if self.balance <= 0
+  def check_balance
+    if self.balance < 100
       errors.add(:balance, "can not open account")
     end
   end

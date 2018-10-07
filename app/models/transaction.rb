@@ -22,11 +22,10 @@ class Transaction < ApplicationRecord
     esle
       new_balance = self.account.balance - self.amount
     end
-    
     unless self.account.update.attributes(balance: new_balance)
       raise "request can not be processed"
     end
-
+  end  
 
   def left_balance
     if self.operation == 'withdrawal'    

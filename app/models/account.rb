@@ -14,7 +14,7 @@ class Account < ApplicationRecord
   def balance_limit
     if self.balance < 100
       errors.add(:balance, "should be at least 100")
-    end	
+    end 
   end
 
   def check_balance_non_zero

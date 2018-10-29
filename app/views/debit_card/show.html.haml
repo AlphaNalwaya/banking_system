@@ -1,0 +1,19 @@
+%h1
+  Debit Card: #{@debit_card.debit_card_id}
+
+= link_to debit_card_path(@debit_card.account.id), class: "btn btn-default" do
+  Back to #{@debit_card.account}
+
+= link_to debit_card_path, class: "btn btn-default" do
+	Back to Accounts
+
+= link_to debit_card_path(@account.id), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } do
+  Delete Debit Card
+
+#parameters{ data: { debit_card_id: @debit_card.id } }
+
+= javascript_include_tag "debit_cards/Show"
+:javascript
+  $(document).ready(function() {
+    Show.init();
+  });	

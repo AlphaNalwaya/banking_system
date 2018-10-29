@@ -1,0 +1,32 @@
+%h1
+  Account Number: #{@account.account_no}
+  %small
+    #{@account.user}
+
+= button_tag :new_transaction, id: "btn-new-transaction", class: "btn btn-primary" do |transaction|
+  New Transaction	
+end
+
+= link_to user_path(@account.user.id), class: "btn btn-default" do
+  Back to #{@account.user}
+
+= link_to account_path, class: "btn btn-default" do
+	Back to Accounts
+
+= render partial: "transactions", locals: { account: @account }
+
+= link_to edit_account_path(@account.id), class: "btn btn-info" do
+  Edit Account
+
+= link_to account_path(@account.id), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } do
+  Delete Account
+
+= render partial: "modal_transaction"
+
+#parameters{ data: { account_id: @account.id } }
+
+= javascript_include_tag "accounts/Show"
+:javascript
+  $(document).ready(function() {
+    Show.init();
+  });	

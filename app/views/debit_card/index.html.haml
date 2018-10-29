@@ -1,0 +1,21 @@
+%h1
+  Debit Cards
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Card Number
+      %th Issue Date
+      %th Expiry Date
+      %th Pin Number
+      %th Actions
+  %tbody
+    - @debit_cards.each do |debit_card|
+      %tr
+        %td #{debit_card.card_no}
+        %td #{debit_card.issue_date}
+        %td #{debit_card.expiry_date}
+        %td #{debit_card.pin_no}
+        %td
+          = link_to debit_cards_path(debit_card: debit_card_id), class: "btn btn-primary" do
+            show

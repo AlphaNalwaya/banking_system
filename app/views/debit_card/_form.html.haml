@@ -1,0 +1,14 @@
+= simple_form_for debit_card do |f|
+  .row
+    .col-md-6
+      = f.input :card_no, input_html: { class: "form-control" }
+    .col-md-6
+      = f.input :expiry_date, input_html: { class: "form-control" }
+    .col-md-6
+      = f.input :issue_date, input_html: { class: "form-control" }
+    .col-md-6
+      = f.input :pin_no, input_html: { class: "form-control" }  
+
+  %hr
+  = button_tag type: :submit, class: "btn btn-primary" do
+    Submit      

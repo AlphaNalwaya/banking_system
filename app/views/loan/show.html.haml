@@ -1,0 +1,8 @@
+%h1
+  Loan: #{@loan.loan_id}
+
+= link_to loan_path, class: "btn btn-default" do
+	Back to Loans
+
+= link_to edit_loan_path(@loan.id), class: "btn btn-info" do
+  Edit Loan

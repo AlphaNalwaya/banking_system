@@ -1,0 +1,19 @@
+%h1
+  Loans
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Loan Type
+      %th Amount
+      %th Interest Rate
+      %th Actions
+  %tbody
+    - @loans.each do |loan|
+      %tr
+        %td #{loan.loan_type}
+        %td #{number_to_currency(loan.amount, unit: "p")}
+        %td #{loan.interest_rate}
+        %td
+          = link_to loans_path(loan: loan_id), class: "btn btn-primary" do
+            show

@@ -1,6 +1,8 @@
 FactoryBot.define do
-  factory :debit_card do
-    card_no Faker::Account.card_number
-    pin_no Faker::Number.pin_number(3)
+  factory :creditcard do
+    card_no { 1 }
+    expiry_date { "2018-10-17" }
+    issue_date { "2012-10-17" }
+    cash_limit { 1 }
   end
 end

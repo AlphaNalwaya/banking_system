@@ -1,0 +1,17 @@
+%h1
+  Transactions
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Account Number
+      %th Amount
+      %th Operations
+  %tbody
+    - @transactions.each do |transaction|
+      %tr
+        %td #{account.account_no}
+        %td #{number_to_currency(transaction.amount, unit: "p")}
+        %td
+          = link_to transactions_path(transaction: transaction_id), class: "btn btn-primary" do
+            show

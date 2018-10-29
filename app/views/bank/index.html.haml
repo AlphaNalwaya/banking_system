@@ -1,0 +1,7 @@
+%h1
+  Bank
+
+= link_to new_bank_path, class: "btn btn-primary" do
+  New Bank
+
+= render partial: "list", locals: {banks: @banks}  

@@ -35,6 +35,23 @@ class DebitCardController < ApplicationController
          render json: {errors: debit_card.errors.full_messages}, status: :unprocessable_entity
       end
    end
+
+   def destroy
+      @creditcard = Debit_card.find(params[:id])
+      respond_to do |render|
+      @creditcard.destroy
+      render.json { render json: {}, status: :ok }
+     rescue ActiveRecord::RecordNotFound => e
+      respond_to do |render|
+      render.json { render json: { error: e.message }, status: :unprocessable_entity }
+     end
+  end
+
+  def index
+     @creditcards = Debit_card.all
+     respond_to do |render|
+     render.json { render json: { debit_cards: @debit_cards }, status: :ok }
+  end
    
    def edit
       @debit_card = Debit_card.find(params[:id])

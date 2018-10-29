@@ -1,0 +1,14 @@
+%table.table.table-bordered
+  %thead
+    %tr 
+      %th Aaccount Number
+      %th Balance
+      %th Actions
+  %tbody
+    - accounts.each do |account|
+      %tr
+        %td #{account.account_no}
+        %td #{number_to_currency(account.balance, unit: "p")}
+        %td
+          = link_to account_path(account.id), class: "btn btn-info" do
+            Show

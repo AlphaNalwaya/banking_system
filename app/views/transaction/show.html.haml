@@ -1,0 +1,14 @@
+%h1
+  Transaction
+
+= button_tag :new_transaction, id: "btn-new-transaction", class: "btn btn-primary" do |transaction|
+  New Transaction	
+end
+
+= link_to transaction_path, class: "btn btn-default" do
+	Back to Accounts
+
+= render partial: "transactions", locals: { account: @account }
+
+= link_to edit_transaction_path(@transaction.id), class: "btn btn-info" do
+  Edit Transaction

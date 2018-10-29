@@ -1,0 +1,14 @@
+%table.table.table-bordered
+  %thead
+    %tr 
+      %th Name
+      %th Address
+      %th Actions
+  %tbody
+    - banks.each do |c|
+      %tr
+        %td #{c.name}
+        %td #{c.address}
+        %td
+          = link_to bank_path(c.id), class: "btn btn-primary" do
+          Show   

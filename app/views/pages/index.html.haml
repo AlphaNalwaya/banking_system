@@ -1,0 +1,23 @@
+%h1
+  My bank
+
+.row
+  .col-md-12
+    %h2
+      Number of Accounts: #{number_of_accounts}
+    %h2
+      Number of Users: #{number_of_users}
+
+.row
+  .col-md-12
+    = link_to users_path do 
+      Users
+    %hr
+    = link_to new_user_path do
+      New user
+    %hr  
+    = link_to accounts_path do
+      Accounts  
+    %hr  
+    = link_to new_account_path do
+      New Account  

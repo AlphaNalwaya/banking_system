@@ -1,0 +1,6 @@
+%h1
+  Edit Account
+  %small
+    #{account.account_no}
+
+= render partial: "form", locals: { account: @account } 

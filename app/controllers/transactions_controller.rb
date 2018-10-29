@@ -1,5 +1,6 @@
 class TransactionController < ApplicationController
-
+  skip_before_action :verify_authenticity_token
+  
 	def list
       @transactions = Transaction.all
    end
@@ -15,9 +16,11 @@ class TransactionController < ApplicationController
    end
   
    def new
-      @transaction = Transaction.new
-      @accounts = Account.all
-      render json: {transaction: transaction}, status: :ok
+     @transaction = Transaction.new
+     respond_to do |format|
+       format.html{}
+        format.json {render json: { transaction: @transaction }, status: :ok}
+     end   
    end
 
    def transaction_params
@@ -25,21 +28,39 @@ class TransactionController < ApplicationController
    end
 
    def create
-      @transaction = Transaction.new(transaction_params)
+     @transaction = Transaction.new(transaction_params)
+     if @transaction.save
+       render json: { transaction: @transaction }, status: :created
+     else
+       render json: { errors: @transaction.errors }, status: :unprocessable_entity
+    end
 
-      if @transaction.save
-         redirect_to :action => 'list'
-         render json: {transaction: transaction}, status: :ok
-      else
-         @accounts = Account.all
-         render json: {errors: transaction.errors.full_message}, status: :unprocessable_entity
-      end
+   end
+
+   def destroy
+      @transaction = Transaction.find(params[:id])
+      respond_to do |render|
+      @transaction.destroy
+      render.json { render json: {}, status: :ok }
+     rescue ActiveRecord::RecordNotFound => e
+      respond_to do |render|
+      render.json { render json: { error: e.message }, status: :unprocessable_entity }
+     end
+   end
+
+   def index
+     @transactions = Transaction.all
+     render json: { transactions: @transactions }, status: :ok
    end
    
    def edit
-      @transaction = Transaction.find(params[:id])
-      @accounts = Account.all
-      render json: {transaction: transaction}, status: :ok
+     @transaction = Transaction.find(params[:id])
+     respond_to do |format|
+       format.html{}
+        format.json {render json: { transaction: @transaction }, status: :ok}
+     end
+   rescue ActiveRecord::RecordNotFound => e
+     render json: { error: e.message }, status: :not_found
    end
    
    def update

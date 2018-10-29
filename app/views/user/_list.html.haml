@@ -1,0 +1,12 @@
+%table.table.table-bordered
+  %thead
+    %tr 
+      %th Name
+      %th Actions
+  %tbody
+    - users.each do |c|
+      %tr
+        %td #{c.name}
+        %td
+          = link_to user_path(c.id), class: "btn btn-primary" do
+          Show   

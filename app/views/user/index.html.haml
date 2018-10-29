@@ -1,0 +1,7 @@
+%h1
+  Users Database
+
+= link_to new_user_path, class: "btn btn-primary" do
+  New User
+
+= render partial: "list", locals: {Users: @Users}  
